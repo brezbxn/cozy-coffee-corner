@@ -38,7 +38,7 @@ body::before {
 
 @font-face {
     font-family: 'Anticva';
-    src: url('ofont.ru_Anticva.ttf') format('truetype');
+    src: url('fonts/ofont.ru_Anticva.ttf') format('truetype');
     font-weight: 100;
     font-style: normal;
 }
