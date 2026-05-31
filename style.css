@@ -1,0 +1,956 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EAE0D5;
+    min-height: 80vh;
+    position: relative;
+    /* Убираем display: flex и связанные свойства */
+}
+
+.vertical-wrapper {
+    max-width: 1400px;
+    margin: 20rem auto 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 9rem;
+    position: relative;
+    z-index: 1;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('paper-texture.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
+}
+
+.atom-container {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    
+}
+
+@font-face {
+    font-family: 'Anticva';
+    src: url('fonts/ofont.ru_Anticva.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 14rem;
+    font-family: 'Anticva', sans-serif;
+    font-weight: 100;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    padding: 0 70px;
+    display: inline-block;
+    margin: 0;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid #C6AC8F;
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    transform-origin: center;
+}
+
+/* Базовые стили для орбит (для больших экранов) */
+.orbit-1, .orbit-2, .orbit-3 {
+    width: 80vw;   /* 80% ширины окна */
+    max-width: 1000px;
+    height: auto;  /* высота автоматически, чтобы сохранить пропорции */
+    aspect-ratio: 1000 / 380;  /* сохраняем форму эллипса */
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+.orbit-2 {
+    transform: translate(-50%, -50%) rotate(40deg);
+}
+.orbit-3 {
+    transform: translate(-50%, -50%) rotate(-40deg);
+}
+
+.corner-text {
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #141414;
+    letter-spacing: 1px;
+    z-index: 10;
+    font-weight: 600;
+}
+.corner-year {
+    position: absolute;
+    top: 50px;
+    right: 150px;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #141414;
+    letter-spacing: 1px;
+    z-index: 10;
+    font-weight: 600;
+}
+
+.bon-appetit {
+    font-family: sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #141414;
+    text-align: center;
+    letter-spacing: 1px;
+    margin: 4rem 0 0.5rem 0;
+}
+
+.separator {
+    width: 100vw;
+    height: 1px;
+    background: #C6AC8F;
+    border: none;
+    margin: 0.1rem 0 0.1rem 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    padding: 0 150px;
+    width: 100%;
+}
+
+.hero-side-text {
+    flex: 1;
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #3a3a3a;
+    font-weight: 500;
+    max-width: 500px;
+    padding-left: 0;
+}
+
+.hero-text-group {
+    flex: 1;
+}
+
+.hero-title {
+    font-family: 'Anticva', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 100;
+    color: #1e1e1e;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-description {
+    font-family: sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.hero-button {
+    display: inline-block;
+    background-color: #6F4E37;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+.hero-button:hover {
+    background-color: #7a4f2a;
+}
+
+.vertical-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 9rem;
+    margin-top: 20rem;
+}
+
+.section-separator {
+    width: 100vw;
+    height: 1px;
+    background: #C6AC8F;
+    border: none;
+    margin: 1rem 0 1rem 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.coffee-journey {
+    padding: 0 150px; 
+    width: 100%;
+    padding: 0 170px;
+    margin-bottom: 0.1rem;
+}
+
+.journey-wrapper {
+    max-width: 600px;
+}
+
+.journey-heading {
+    font-family: 'Anticva', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 100;
+    color: #1e1e1e;
+    margin-bottom: 0.5rem;
+}
+
+.journey-caption {
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #141414;
+    letter-spacing: 1px;
+}
+
+/* ===== GALLERY BOTTOM ===== */
+.gallery-bottom {
+    display: grid;
+    grid-template-columns: 2fr 1.8fr;
+    gap: 1rem;
+    margin: 0 auto 2rem auto;
+    width: 70%;
+    position: relative;
+    z-index: 1;
+    align-items: stretch; /* ячейки одной высоты */
+}
+
+.gallery-bottom img {
+    width: 100%;
+    height: 100%;         
+    object-fit: cover;    
+    border-radius: 20px;
+    display: block;
+    filter: sepia(70%) saturate(50%) brightness(0.9);
+}
+
+
+/* Отдельно для правого блока */
+.gallery-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gallery-right img {
+    width: 100%;
+    height: auto;       
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+
+.gallery-right {
+    height: 100%;
+}
+
+
+.gallery-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+.gallery-right img {
+    height: calc(50% - 0.5rem); 
+    object-fit: cover;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EAE0D5;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('paper-texture.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
+}
+
+.atom-container {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+@font-face {
+    font-family: 'Anticva';
+    src: url('fonts/ofont.ru_Anticva.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 14rem;
+    font-family: 'Anticva', sans-serif;
+    font-weight: 100;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    padding: 0 70px;
+    display: inline-block;
+    margin: 0;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid #C6AC8F;
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    transform-origin: center;
+}
+
+.orbit-1 {
+    width: 1000px;
+    height: 380px;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+.orbit-2 {
+    width: 1000px;
+    height: 380px;
+    transform: translate(-50%, -50%) rotate(40deg);
+}
+.orbit-3 {
+    width: 1000px;
+    height: 380px;
+    transform: translate(-50%, -50%) rotate(-40deg);
+}
+
+.corner-text {
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #141414;
+    letter-spacing: 1px;
+    z-index: 10;
+    font-weight: 600;
+}
+.corner-year {
+    position: absolute;
+    top: 50px;
+    right: 150px;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #141414;
+    letter-spacing: 1px;
+    z-index: 10;
+    font-weight: 600;
+}
+
+.bon-appetit {
+    font-family: sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #141414;
+    text-align: center;
+    letter-spacing: 1px;
+    margin: 4rem 0 0.5rem 0;
+}
+
+.separator {
+    width: 100vw;
+    height: 1px;
+    background: #C6AC8F;
+    border: none;
+    margin: 0.1rem 0 0.1rem 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    padding: 0 150px;
+    width: 100%;
+}
+
+.hero-side-text {
+    flex: 1;
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #3a3a3a;
+    font-weight: 500;
+    max-width: 500px;
+    padding-left: 0;
+}
+
+.hero-text-group {
+    flex: 1;
+}
+
+.hero-title {
+    font-family: 'Anticva', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 100;
+    color: #1e1e1e;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-description {
+    font-family: sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.hero-button {
+    display: inline-block;
+    background-color: #6F4E37;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+.hero-button:hover {
+    background-color: #7a4f2a;
+}
+
+.vertical-wrapper {
+    max-width: 1400px;
+    margin: 20rem auto 0 auto;  /* центрирование по горизонтали */
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 9rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-separator {
+    width: 100vw;
+    height: 1px;
+    background: #C6AC8F;
+    border: none;
+    margin: 1rem 0 1rem 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* Разделитель перед баристами */
+.barista-separator {
+    width: 100vw;
+    height: 1px;
+    background: #C6AC8F;
+    border: none;
+    margin: 2rem 0 2rem 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.coffee-journey {
+    padding: 0 150px;
+    width: 100%;
+    margin-bottom: 0.1rem;
+}
+
+.journey-wrapper {
+    max-width: 600px;
+}
+
+.journey-heading {
+    font-family: 'Anticva', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 100;
+    color: #1e1e1e;
+    margin-bottom: 0.5rem;
+}
+
+.journey-caption {
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #141414;
+    letter-spacing: 1px;
+} 
+
+/* ===== GALLERY BOTTOM ===== */
+.gallery-bottom {
+    display: grid;
+    grid-template-columns: 2fr 1.8fr;
+    gap: 1rem;
+    margin: 0 auto 2rem auto;
+    width: 70%;
+    position: relative;
+    z-index: 1;
+    align-items: stretch;
+}
+
+.gallery-bottom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+.gallery-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    justify-content: space-between;
+}
+.gallery-right img {
+    height: calc(50% - 0.5rem);
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.coffee-journey + .gallery-bottom {
+    margin-top: -4rem !important;
+}
+
+/* ===== СЕКЦИЯ БАРИСТА ===== */
+.baristas {
+    width: 100%;
+    padding: 0 150px;
+    margin: 0.1rem 0 4rem 0;
+    box-sizing: border-box;
+}
+.baristas-title {
+    font-family: 'Anticva', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 100;
+    color: #1e1e1e;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+.baristas-subtitle {
+    font-family: sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #2c2c2c;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.baristas-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+
+
+
+/* Карточки */
+.barista-card--left,
+.barista-card--right {
+    width: 260px;
+    flex-shrink: 0; 
+    background-color: #C6AC8F;
+    padding: 2rem 2.5rem 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+    border-radius: 35% 35% 35% 8%; 
+}
+
+.barista-card--right {
+    border-radius: 35% 8% 35% 35%;
+}
+
+.barista-card--left {
+    width: 350px;  
+    justify-content: space-between; 
+}
+
+.barista-card--right {
+    width: 350px;
+    justify-content: space-between;  
+}
+
+
+
+.barista-card:hover {
+    transform: translateY(-5px);
+}
+.avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #D9C7B0;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.barista-name {
+    font-family: 'Anticva', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-bottom: 0.25rem;
+    color: #1e1e1e;
+}
+.barista-role {
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6F4E37;
+    letter-spacing: 0.5px;
+}
+
+/* ===== FAQ (ДВЕ КОЛОНКИ) ===== */
+.faq {
+    width: 100%;
+    padding: 0 150px;
+    margin: 4rem 0;
+    box-sizing: border-box;
+}
+.faq-title {
+    font-family: 'Anticva', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 100;
+    color: #1e1e1e;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
+}
+.faq-question {
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1e1e1e;
+    margin-bottom: 0.5rem;
+}
+.faq-answer {
+    font-family: sans-serif;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #3a3a3a;
+    font-weight: 400;
+}
+/* ===== STAY WITH US ===== */
+.stay {
+    width: 100%;
+    padding: 0 150px;
+    margin: 4rem 0;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 15rem;
+}
+.stay-title {
+    font-family: 'Anticva', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 100;
+    margin-bottom: 1rem;
+    color: #1e1e1e;
+}
+.stay-text {
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #3a3a3a;
+    margin-bottom: 2rem;
+}
+.stay-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.stay-form input {
+    padding: 12px 20px;
+    width: 280px;
+    border: 1px solid #C6AC8F;
+    border-radius: 40px;
+    background: transparent;
+    font-family: sans-serif;
+    font-size: 1rem;
+}
+.stay-form button {
+    background-color: #6F4E37;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.stay-form button:hover {
+    background-color: #7a4f2a;
+}
+/* ===== ФУТЕР ===== */
+.footer {
+    background-color: #1e1e1e;
+    width: 100%;
+    padding: 3rem 0 2rem;
+}
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, 160px));
+    justify-content: center;
+    gap: 2rem;
+    margin-left: 100px;
+}
+.footer-col {
+    text-align: left;
+}
+.footer-col h4 {
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-col li {
+    margin-bottom: 0.5rem;
+}
+.footer-col a {
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #ccc;
+    text-decoration: none;
+}
+
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0 1.5rem;
+}
+.footer-social img {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.2s;
+}
+.footer-copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #aaa;
+    border-top: 1px solid #333;
+    padding-top: 1.5rem;
+}
+/* Убираем все отступы перед галереей */
+
+.coffee-journey + .gallery-bottom {
+    margin-top: -4rem !important;
+}
+
+
+
+.footer {
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+body {
+    flex-direction: column;
+}
+.footer {
+    align-self: center;
+    width: 100%;
+}
+@media (max-width: 768px) {
+    /* Угловые тексты */
+     .corner-text {
+        font-size: 0.65rem;
+        left: 8px;
+        max-width: 65%;
+        white-space: normal;
+        line-height: 1.2;
+        top: 10px;
+    }
+    .corner-year {
+        font-size: 0.8rem;
+        right: 8px;
+        top: 10px;
+    }
+    /* Логотип и орбиты */
+    .atom-container {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    h1 {
+        font-size: 4rem;
+        text-align:center;
+    }
+    .orbit {
+        width: 80vw;
+        height: auto;
+        border-width: 1px;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    .orbit-2 {
+        transform: translate(-50%, -50%) rotate(40deg);
+    }
+    .orbit-3 {
+        transform: translate(-50%, -50%) rotate(-40deg);
+    }
+    /* Герой */
+    .hero {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .hero-side-text, .hero-text-group {
+        max-width: 100%;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-side-text {
+        font-size: 1rem;
+    }
+    /* Coffee Journey */
+    .coffee-journey {
+        padding: 0 20px;
+    }
+    .journey-heading {
+        font-size: 1.8rem;
+    }
+    .journey-caption {
+        font-size: 1rem;
+    }
+    /* Галерея */
+    .gallery-bottom {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    .gallery-right {
+        flex-direction: column;
+    }
+    .gallery-right img {
+        height: auto;
+    }
+    /* Баристы */
+    .baristas {
+        padding: 0 20px;
+    }
+    .baristas-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .barista-card--left, .barista-card--right {
+        width: 90%;
+        max-width: 280px;
+    }
+    /* FAQ */
+    .faq {
+        padding: 0 20px;
+    }
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    /* Stay */
+    .stay {
+        padding: 0 20px;
+    }
+    .stay-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    .stay-form input {
+        width: 100%;
+    }
+    /* Футер */
+    .footer-columns {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        margin-left: 0;
+        justify-content: center;
+    }
+    .footer-col {
+        text-align: center;
+    }
+}
