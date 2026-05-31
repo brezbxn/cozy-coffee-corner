@@ -8,6 +8,7 @@ body {
     background-color: #EAE0D5;
     min-height: 80vh;
     position: relative;
+    /* Убираем display: flex и связанные свойства */
 }
 
 .vertical-wrapper {
@@ -839,19 +840,29 @@ body {
 }
 @media (max-width: 768px) {
     /* Угловые тексты */
-    .corner-text, .corner-year {
+     .corner-text {
+        font-size: 0.65rem;
+        left: 8px;
+        max-width: 65%;
+        white-space: normal;
+        line-height: 1.2;
         top: 10px;
-        left: 20px;
-        right: 20px;
-        font-size: 0.75rem;
+    }
+    .corner-year {
+        font-size: 0.8rem;
+        right: 8px;
+        top: 10px;
     }
     /* Логотип и орбиты */
     .atom-container {
-        margin: 0 auto;
+        text-align: center;
         width: 100%;
+        display: flex;
+        justify-content: center;
     }
     h1 {
-        font-size: 4rem;  
+        font-size: 4rem;
+        text-align:center;
     }
     .orbit {
         width: 80vw;
