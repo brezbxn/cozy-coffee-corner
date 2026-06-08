@@ -954,3 +954,23 @@ body {
         text-align: center;
     }
 }
+
+.separator,
+.section-separator,
+.barista-separator {
+    width: 1000vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #C6AC8F;
+}
+
+.separator,
+.section-separator,
+.barista-separator {
+    transform: none !important;
+    margin-top: 0;
+    margin-bottom: 0;
+}
